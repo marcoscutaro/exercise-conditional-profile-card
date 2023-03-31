@@ -8,7 +8,7 @@ import "../style/index.css";
         includeCover: true, // if includeCover is true the algorithm should
         background: "https://images.unsplash.com/photo-1511974035430-5de47d3b95da", // this is the url of the image that will used as background for the profile cover
         avatarURL: "https://randomuser.me/api/portraits/women/42.jpg", // this is the url for the profile avatar
-        socialMediaPosition: "left", "right" // social media bar position (left or right)
+        socialMediaPosition: "left", // social media bar position (left or right)
         
         twitter: null, // social media usernames
         github: null,
@@ -32,27 +32,34 @@ function render(variables = {}) {
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
-            <img src="${variables.avatarURL}" class="photo" />
-            <h1> ${variables.lastname ? variables.lastname : ""}</h1>
-            <h2>${variables.role ? variables.role : ""}</h2>
-            <h3>${variables.country ? variables.country : ""} ${","} ${
-    variables.city ? variables.city : ""
+          <img src="${variables.avatarURL}" class="photo" />
+          <h1>${variables.name ? variables.name : "name "} ${
+    variables.lastname ? variables.lastname : "last name "
+  }</h1>
+          
+          <h2>${variables.role ? variables.role : "Select Role"}</h2>
+          <h3>${variables.city ? variables.city : "City"}, ${
+    variables.country ? variables.country : "Country"
   }</h3>
-            <ul class="${variables.socialMediaPosition}"> 
-              <li><a href="https://twitter.com/4geeksacademy">${
-                variables.twitter ? variables.twitter : ""
-              }<i class="fab fa-twitter"></i></a></li>
-              <li><a href="https://github.com/4geeksacademy">${
-                variables.github ? variables.github : ""
-              }<i class="fab fa-github"></i></a></li>
-              <li><a href="https://linkedin.com/4geeksacademy">${
-                variables.linkedin ? variables.linkedin : ""
-              }<i class="fab fa-linkedin"></i></a></li>
-              <li><a href="https://instagram.com/4geeksacademy">${
-                variables.instagram ? variables.instagram : ""
-              }<i class="fab fa-instagram"></i></a></li>
-            </ul>
-          </div>
+          <ul class="${
+            variables.socialMediaPosition
+              ? variables.socialMediaPosition
+              : "position-right"
+          }">
+            <li><a href="${
+              !variables.twitter ? null : variables.twitter
+            }"><i class="fa-brands fa-twitter"></i></a></li>
+            <li><a href=${
+              !variables.github ? null : variables.github
+            }><i class="fab fa-github"></i></a></li>
+            <li><a href=${
+              !variables.linkedin ? null : variables.linkedin
+            }><i class="fab fa-linkedin"></i></a></li>
+            <li><a href=${
+              !variables.instagram ? null : variables.instagram
+            }><i class="fab fa-instagram"></i></a></li>
+          </ul>
+        </div>
     `;
 }
 
@@ -71,7 +78,7 @@ window.onload = function() {
     socialMediaPosition: "position-left",
     // social media usernames
     twitter: null,
-    github: null,
+    github: "alesanchezr",
     linkedin: null,
     instagram: null,
     name: null,
